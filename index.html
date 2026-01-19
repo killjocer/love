@@ -3,104 +3,579 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Сайт-приветствие</title>
+    <title>Ебанутые Анимации</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            background: #000;
+            font-family: 'Courier New', monospace;
+            overflow-x: hidden;
+            min-height: 100vh;
+            cursor: none;
+        }
+
+        /* Собственный курсор */
+        .custom-cursor {
+            position: fixed;
+            width: 30px;
+            height: 30px;
+            background: #ff00ff;
+            border-radius: 50%;
+            pointer-events: none;
+            mix-blend-mode: difference;
+            z-index: 9999;
+            filter: blur(5px);
+            animation: cursorPulse 0.5s infinite alternate;
+        }
+
+        @keyframes cursorPulse {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(1.5); opacity: 0.7; }
+        }
+
+        .hero {
             height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .title {
+            font-size: 6rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            background: linear-gradient(45deg, 
+                #ff0000, #ff00ff, #00ffff, #00ff00, #ffff00);
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: 
+                titleColor 3s infinite linear,
+                glitch 0.3s infinite,
+                float 5s infinite ease-in-out;
+            text-shadow: 
+                0 0 10px #fff,
+                0 0 20px #ff00ff,
+                0 0 30px #00ffff;
+        }
+
+        @keyframes titleColor {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes glitch {
+            0% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+            100% { transform: translate(0); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-20px) rotate(1deg); }
+            75% { transform: translateY(20px) rotate(-1deg); }
+        }
+
+        .subtitle {
+            color: white;
+            font-size: 1.5rem;
+            margin-top: 2rem;
+            opacity: 0;
+            animation: fadeIn 2s forwards 1s;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        /* Контейнер для анимаций */
+        .animations-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 40px;
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        .animation-box {
+            height: 300px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid transparent;
+            animation: borderColor 2s infinite linear;
+        }
+
+        @keyframes borderColor {
+            0% { border-color: #ff0000; box-shadow: 0 0 20px #ff0000; }
+            25% { border-color: #00ff00; box-shadow: 0 0 20px #00ff00; }
+            50% { border-color: #0000ff; box-shadow: 0 0 20px #0000ff; }
+            75% { border-color: #ffff00; box-shadow: 0 0 20px #ffff00; }
+            100% { border-color: #ff00ff; box-shadow: 0 0 20px #ff00ff; }
+        }
+
+        /* Анимация 1: Вихрь частиц */
+        #particle-storm {
+            background: #000;
+        }
+
+        .particle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #00ffff;
+            border-radius: 50%;
+            animation: particleSpin 3s infinite linear;
+        }
+
+        @keyframes particleSpin {
+            0% { 
+                transform: rotate(0deg) translateX(100px) rotate(0deg); 
+                background: #ff0000;
+            }
+            100% { 
+                transform: rotate(360deg) translateX(100px) rotate(-360deg); 
+                background: #00ff00;
+            }
+        }
+
+        /* Анимация 2: Жидкий металл */
+        #liquid-metal {
+            background: linear-gradient(45deg, #000, #222);
+        }
+
+        .liquid {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(255, 215, 0, 0.3), 
+                transparent);
+            animation: liquidFlow 4s infinite linear;
+            filter: blur(10px);
+        }
+
+        @keyframes liquidFlow {
+            0% { transform: translateX(-100%) skewX(-15deg); }
+            100% { transform: translateX(200%) skewX(-15deg); }
+        }
+
+        /* Анимация 3: Неоновый лабиринт */
+        #neon-maze {
+            background: #000;
+        }
+
+        .maze-line {
+            position: absolute;
+            background: #ff00ff;
+            animation: mazeDraw 4s infinite alternate;
+            box-shadow: 0 0 10px #ff00ff;
+        }
+
+        @keyframes mazeDraw {
+            0% { 
+                width: 0; 
+                height: 2px; 
+                left: 0; 
+                top: 10%;
+                background: #ff00ff;
+            }
+            100% { 
+                width: 100%; 
+                height: 2px; 
+                left: 0; 
+                top: 90%;
+                background: #00ffff;
+            }
+        }
+
+        /* Анимация 4: Взрыв формы */
+        #shape-explosion {
+            background: #111;
+        }
+
+        .exploding-shape {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: #ff0000;
+            animation: explode 2s infinite cubic-bezier(0.1, 0.7, 1.0, 0.1);
+        }
+
+        @keyframes explode {
+            0% { 
+                transform: scale(1) rotate(0deg); 
+                opacity: 1;
+                border-radius: 0;
+            }
+            100% { 
+                transform: scale(20) rotate(720deg); 
+                opacity: 0;
+                border-radius: 50%;
+            }
+        }
+
+        /* Анимация 5: Глючный текст */
+        #glitch-text {
             display: flex;
             justify-content: center;
             align-items: center;
-            overflow: hidden;
+            font-size: 3rem;
+            color: #00ff00;
+            text-shadow: 0 0 10px #00ff00;
+            animation: textGlitch 0.1s infinite;
         }
-        
-        .container {
-            text-align: center;
-            padding: 40px;
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-            animation: fadeIn 1.5s ease;
+
+        @keyframes textGlitch {
+            0% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); clip-path: inset(0 0 50% 0); }
+            40% { transform: translate(2px, -2px); clip-path: inset(50% 0 0 0); }
+            60% { transform: translate(-2px, 2px); filter: hue-rotate(90deg); }
+            80% { transform: translate(2px, -2px); filter: hue-rotate(180deg); }
+            100% { transform: translate(0); }
         }
-        
-        h1 {
-            font-size: 5rem;
-            color: #2575fc;
-            margin-bottom: 20px;
-            text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.1);
+
+        /* Анимация 6: Пульсирующая энергия */
+        #energy-pulse {
+            background: radial-gradient(circle, #000, #111);
         }
-        
-        .subtitle {
-            font-size: 1.5rem;
-            color: #333;
-            opacity: 0.8;
-            margin-top: 10px;
+
+        .pulse-ring {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 0;
+            height: 0;
+            border: 2px solid #00ffff;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
         }
-        
-        .emoji {
-            font-size: 4rem;
-            margin: 20px 0;
-            animation: bounce 2s infinite;
+
+        @keyframes pulse {
+            0% { 
+                width: 0; 
+                height: 0; 
+                opacity: 1; 
+                border-width: 10px;
+            }
+            100% { 
+                width: 300px; 
+                height: 300px; 
+                opacity: 0; 
+                border-width: 1px;
+            }
         }
-        
+
+        /* Футер */
         .footer {
-            margin-top: 30px;
-            color: #666;
-            font-size: 0.9rem;
+            text-align: center;
+            padding: 30px;
+            color: white;
+            background: linear-gradient(45deg, #000, #222);
+            animation: footerGlow 3s infinite alternate;
         }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-30px); }
-            to { opacity: 1; transform: translateY(0); }
+
+        @keyframes footerGlow {
+            from { box-shadow: 0 -10px 50px #ff00ff; }
+            to { box-shadow: 0 -10px 50px #00ffff; }
         }
-        
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
+
+        .warning {
+            color: #ff0000;
+            font-size: 1.2rem;
+            margin-top: 20px;
+            animation: warningBlink 1s infinite;
         }
-        
+
+        @keyframes warningBlink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        /* Кнопка безумия */
+        .madness-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 15px 30px;
+            background: linear-gradient(45deg, #ff0000, #ff00ff);
+            border: none;
+            color: white;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            z-index: 1000;
+            animation: buttonShake 0.5s infinite alternate;
+            transition: all 0.3s;
+        }
+
+        .madness-button:hover {
+            transform: scale(1.2);
+            filter: hue-rotate(90deg);
+        }
+
+        @keyframes buttonShake {
+            0% { transform: rotate(0deg); }
+            25% { transform: rotate(5deg); }
+            75% { transform: rotate(-5deg); }
+            100% { transform: rotate(0deg); }
+        }
+
+        /* Адаптивность */
         @media (max-width: 768px) {
-            h1 { font-size: 3rem; }
-            .emoji { font-size: 3rem; }
-            .container { padding: 20px; }
+            .title { font-size: 3rem; }
+            .animation-box { height: 200px; }
+            .animations-container { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Привет</h1>
-        <div class="emoji">👋</div>
-        <p class="subtitle">Добро пожаловать на самый простой и дружелюбный сайт</p>
-        <div class="footer">
-            <p>Создано с помощью HTML и CSS | Открывайте и улыбайтесь :)</p>
+    <!-- Кастомный курсор -->
+    <div class="custom-cursor" id="cursor"></div>
+
+    <!-- Герой секция -->
+    <section class="hero">
+        <h1 class="title">ЕБАНУТЫЕ<br>АНИМАЦИИ</h1>
+        <p class="subtitle">Самые безумные эффекты во вселенной веба</p>
+    </section>
+
+    <!-- Контейнер с анимациями -->
+    <section class="animations-container">
+        <div class="animation-box" id="particle-storm">
+            <!-- Частицы будут добавлены через JS -->
         </div>
-    </div>
+        
+        <div class="animation-box" id="liquid-metal">
+            <div class="liquid"></div>
+        </div>
+        
+        <div class="animation-box" id="neon-maze">
+            <!-- Лабиринт будет нарисован через JS -->
+        </div>
+        
+        <div class="animation-box" id="shape-explosion">
+            <!-- Формы будут добавлены через JS -->
+        </div>
+        
+        <div class="animation-box" id="glitch-text">
+            ГЛЮК!
+        </div>
+        
+        <div class="animation-box" id="energy-pulse">
+            <div class="pulse-ring"></div>
+            <div class="pulse-ring" style="animation-delay: 0.5s"></div>
+            <div class="pulse-ring" style="animation-delay: 1s"></div>
+        </div>
+    </section>
+
+    <!-- Кнопка активации безумия -->
+    <button class="madness-button" onclick="activateTotalMadness()">
+        АКТИВИРОВАТЬ БЕЗУМИЕ
+    </button>
+
+    <!-- Футер -->
+    <footer class="footer">
+        <p>⚠️ ВНИМАНИЕ: Этот сайт может вызвать эпилепсию, дезориентацию и восторг!</p>
+        <p class="warning">Не смотреть более 5 минут подряд!</p>
+        <p style="margin-top: 20px;">Создано с максимальной дозой креатива и кофеина ☕</p>
+    </footer>
 
     <script>
-        // Простой скрипт для динамического изменения цвета
-        const title = document.querySelector('h1');
-        const colors = ['#2575fc', '#6a11cb', '#ff416c', '#00b09b', '#ff7e5f'];
-        let currentIndex = 0;
-        
-        setInterval(() => {
-            title.style.color = colors[currentIndex];
-            currentIndex = (currentIndex + 1) % colors.length;
-        }, 1500);
-        
-        // Добавляем эффект при клике
-        document.querySelector('.container').addEventListener('click', function() {
-            this.style.transform = 'scale(0.95)';
-            setTimeout(() => {
-                this.style.transform = 'scale(1)';
-            }, 200);
+        // Кастомный курсор
+        document.addEventListener('mousemove', (e) => {
+            const cursor = document.getElementById('cursor');
+            cursor.style.left = e.pageX + 'px';
+            cursor.style.top = e.pageY + 'px';
+            
+            // Случайное изменение цвета курсора
+            if (Math.random() > 0.95) {
+                cursor.style.background = `hsl(${Math.random() * 360}, 100%, 50%)`;
+            }
         });
+
+        // Генерация частиц для вихря
+        const particleStorm = document.getElementById('particle-storm');
+        for (let i = 0; i < 50; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = '50%';
+            particle.style.top = '50%';
+            particle.style.animationDelay = `${Math.random() * 3}s`;
+            particleStorm.appendChild(particle);
+        }
+
+        // Генерация линий лабиринта
+        const neonMaze = document.getElementById('neon-maze');
+        for (let i = 0; i < 20; i++) {
+            const line = document.createElement('div');
+            line.className = 'maze-line';
+            line.style.top = `${Math.random() * 100}%`;
+            line.style.left = `${Math.random() * 100}%`;
+            line.style.animationDelay = `${Math.random() * 4}s`;
+            line.style.animationDuration = `${2 + Math.random() * 3}s`;
+            neonMaze.appendChild(line);
+        }
+
+        // Генерация взрывающихся форм
+        const shapeExplosion = document.getElementById('shape-explosion');
+        function createExplodingShape() {
+            const shape = document.createElement('div');
+            shape.className = 'exploding-shape';
+            shape.style.left = `${Math.random() * 100}%`;
+            shape.style.top = `${Math.random() * 100}%`;
+            shape.style.background = `hsl(${Math.random() * 360}, 100%, 50%)`;
+            shape.style.animationDuration = `${1 + Math.random() * 2}s`;
+            
+            shapeExplosion.appendChild(shape);
+            
+            // Удаляем форму после анимации
+            setTimeout(() => {
+                if (shape.parentNode) {
+                    shape.parentNode.removeChild(shape);
+                }
+            }, 2000);
+        }
+
+        // Создаем формы каждые 200мс
+        setInterval(createExplodingShape, 200);
+
+        // Функция полного безумия
+        function activateTotalMadness() {
+            // Меняем цвет всего сайта
+            document.body.style.filter = 'hue-rotate(180deg)';
+            
+            // Увеличиваем скорость всех анимаций
+            const allElements = document.querySelectorAll('*');
+            allElements.forEach(el => {
+                if (el.style.animationDuration) {
+                    const currentDuration = parseFloat(el.style.animationDuration);
+                    el.style.animationDuration = (currentDuration / 2) + 's';
+                }
+            });
+            
+            // Создаем взрыв конфеtti
+            for (let i = 0; i < 100; i++) {
+                const confetti = document.createElement('div');
+                confetti.style.position = 'fixed';
+                confetti.style.width = '10px';
+                confetti.style.height = '10px';
+                confetti.style.background = `hsl(${Math.random() * 360}, 100%, 50%)`;
+                confetti.style.borderRadius = '50%';
+                confetti.style.left = `${Math.random() * 100}vw`;
+                confetti.style.top = '0';
+                confetti.style.zIndex = '9998';
+                confetti.style.animation = `confettiFall ${1 + Math.random()}s linear forwards`;
+                
+                document.body.appendChild(confetti);
+                
+                // Удаляем конфетти после падения
+                setTimeout(() => confetti.remove(), 2000);
+            }
+            
+            // Добавляем стиль для падения конфетти
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes confettiFall {
+                    to {
+                        transform: translateY(100vh) rotate(${Math.random() * 360}deg);
+                        opacity: 0;
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+            
+            // Вибрация страницы
+            document.body.style.transform = 'translate(5px, 5px)';
+            setTimeout(() => document.body.style.transform = 'translate(-5px, -5px)', 50);
+            setTimeout(() => document.body.style.transform = 'translate(0, 0)', 100);
+            
+            // Звуковой эффект (если бы был звук)
+            console.log('БАМ! БУМ! КАБУМ! 🔥');
+            
+            // Возвращаем к нормальному состоянию через 3 секунды
+            setTimeout(() => {
+                document.body.style.filter = '';
+                allElements.forEach(el => {
+                    if (el.style.animationDuration) {
+                        el.style.animationDuration = '';
+                    }
+                });
+            }, 3000);
+        }
+
+        // Случайное мерцание анимаций
+        setInterval(() => {
+            const boxes = document.querySelectorAll('.animation-box');
+            boxes.forEach(box => {
+                if (Math.random() > 0.7) {
+                    box.style.animation = 'none';
+                    setTimeout(() => {
+                        box.style.animation = '';
+                    }, 100);
+                }
+            });
+        }, 1000);
+
+        // Эффект параллакса при прокрутке
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const rate = scrolled * -0.5;
+            
+            document.querySelector('.hero').style.transform = `translateY(${rate * 0.5}px)`;
+            
+            // Меняем цвет фона при прокрутке
+            const hue = (scrolled / 10) % 360;
+            document.body.style.background = `hsl(${hue}, 100%, 5%)`;
+        });
+
+        // Случайные вспышки на странице
+        setInterval(() => {
+            if (Math.random() > 0.8) {
+                const flash = document.createElement('div');
+                flash.style.position = 'fixed';
+                flash.style.top = '0';
+                flash.style.left = '0';
+                flash.style.width = '100%';
+                flash.style.height = '100%';
+                flash.style.background = 'white';
+                flash.style.opacity = '0.3';
+                flash.style.zIndex = '9997';
+                flash.style.animation = 'flash 0.2s linear';
+                
+                document.body.appendChild(flash);
+                
+                setTimeout(() => flash.remove(), 200);
+                
+                // Добавляем стиль для вспышки
+                if (!document.querySelector('#flash-style')) {
+                    const style = document.createElement('style');
+                    style.id = 'flash-style';
+                    style.textContent = `
+                        @keyframes flash {
+                            from { opacity: 0.3; }
+                            to { opacity: 0; }
+                        }
+                    `;
+                    document.head.appendChild(style);
+                }
+            }
+        }, 3000);
     </script>
 </body>
 </html>
