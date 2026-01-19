@@ -3,311 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>История одного разговора</title>
+    <title>Сайт-приветствие</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         body {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            color: #333;
-            line-height: 1.6;
-            min-height: 100vh;
-            padding: 20px;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
         }
         
         .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            padding: 40px;
-            position: relative;
-        }
-        
-        .header {
             text-align: center;
-            margin-bottom: 40px;
-            padding-bottom: 25px;
-            border-bottom: 2px solid #eaeaea;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 1.5s ease;
         }
         
         h1 {
-            color: #2c3e50;
-            font-size: 2.8rem;
-            margin-bottom: 15px;
-            background: linear-gradient(to right, #3498db, #8e44ad);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            font-size: 5rem;
+            color: #2575fc;
+            margin-bottom: 20px;
+            text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.1);
         }
         
         .subtitle {
-            color: #7f8c8d;
-            font-size: 1.2rem;
-            font-style: italic;
-        }
-        
-        .message-block {
-            background: #f8f9fa;
-            border-radius: 15px;
-            padding: 25px;
-            margin-bottom: 30px;
-            border-left: 5px solid #3498db;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease;
-        }
-        
-        .message-block:hover {
-            transform: translateY(-5px);
-        }
-        
-        .message-author {
-            font-weight: bold;
-            color: #2c3e50;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .message-author.her::before {
-            content: "👩";
             font-size: 1.5rem;
-        }
-        
-        .message-author.him::before {
-            content: "👨";
-            font-size: 1.5rem;
-        }
-        
-        .message-text {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            white-space: pre-line;
-            line-height: 1.8;
-            border: 1px solid #eaeaea;
-        }
-        
-        .protected-section {
-            margin-top: 50px;
-            padding: 30px;
-            background: linear-gradient(135deg, #fdfcfb 0%, #f5f7fa 100%);
-            border-radius: 15px;
-            border: 2px dashed #bdc3c7;
-            text-align: center;
-        }
-        
-        .password-form {
-            margin: 25px 0;
-        }
-        
-        .password-input {
-            padding: 15px;
-            width: 250px;
-            border: 2px solid #3498db;
-            border-radius: 10px;
-            font-size: 1.1rem;
-            text-align: center;
-            letter-spacing: 2px;
-            margin-right: 10px;
-        }
-        
-        .password-btn {
-            padding: 15px 30px;
-            background: linear-gradient(to right, #3498db, #2980b9);
-            color: white;
-            border: none;
-            border-radius: 10px;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .password-btn:hover {
-            background: linear-gradient(to right, #2980b9, #3498db);
-            transform: scale(1.05);
-        }
-        
-        .hidden-content {
-            display: none;
-            margin-top: 30px;
-            padding: 25px;
-            background: #fff;
-            border-radius: 10px;
-            border-left: 5px solid #e74c3c;
-            text-align: left;
-            animation: fadeIn 1s ease;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            color: #333;
+            opacity: 0.8;
+            margin-top: 10px;
         }
         
         .emoji {
-            font-size: 1.5rem;
-            margin: 0 5px;
-        }
-        
-        .heart {
-            color: #e74c3c;
-            font-size: 2rem;
+            font-size: 4rem;
             margin: 20px 0;
-            animation: heartbeat 1.5s infinite;
-        }
-        
-        @keyframes heartbeat {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
+            animation: bounce 2s infinite;
         }
         
         .footer {
-            text-align: center;
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 1px solid #eaeaea;
-            color: #7f8c8d;
+            margin-top: 30px;
+            color: #666;
             font-size: 0.9rem;
         }
         
-        .warning {
-            color: #e74c3c;
-            font-weight: bold;
-            margin-top: 10px;
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
-        .timestamp {
-            color: #95a5a6;
-            font-size: 0.9rem;
-            text-align: right;
-            margin-top: 10px;
-            font-style: italic;
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
         }
         
         @media (max-width: 768px) {
-            .container {
-                padding: 20px;
-            }
-            
-            h1 {
-                font-size: 2rem;
-            }
-            
-            .password-input {
-                width: 100%;
-                margin-bottom: 15px;
-            }
-            
-            .password-btn {
-                width: 100%;
-            }
+            h1 { font-size: 3rem; }
+            .emoji { font-size: 3rem; }
+            .container { padding: 20px; }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="header">
-            <h1>История одного разговора</h1>
-            <div class="subtitle">Сохранённая память о важном моменте</div>
-            <div class="heart">❤️</div>
-        </div>
-        
-        <div class="message-block">
-            <div class="message-author her">Её сообщение</div>
-            <div class="message-text">Любимый, мама мне вообще не верит, у нас был с ней разговор, от которого я очень устала... одно было "не общайся с ним". Я сидела со слезами и слушала ее. Я люблю тебя, и мне слушать такое очень больно...</div>
-            <div class="timestamp">Начало разговора</div>
-        </div>
-        
-        <div class="message-block">
-            <div class="message-author him">Его ответ</div>
-            <div class="message-text">Любимая, слушать это очень больно. Я знаю, как тебе тяжело, и я бесконечно благодарен, что ты держишься за нас, за нашу любовь. Я не хочу, чтобы ты бросала всё и удаляла меня...</div>
-            <div class="timestamp">Ответ поддержки</div>
-        </div>
-        
-        <div class="message-block">
-            <div class="message-author her">Её реакция</div>
-            <div class="message-text">Да ты мой мужчина 😍😍😍😍❤️😍❤️😍❤️😍❤️ Спасибо за поддержку, за опору, и за такие слова ❤️‍🔥❤️‍🔥❤️‍🔥❤️‍🔥❤️‍🔥❤️‍🔥❤️‍🔥</div>
-            <div class="timestamp">Финальный ответ</div>
-        </div>
-        
-        <div class="protected-section">
-            <h3>📁 Личные заметки и анализ</h3>
-            <p>Этот раздел доступен только с паролем</p>
-            
-            <div class="password-form">
-                <input type="password" class="password-input" id="passwordInput" placeholder="Введите пароль" maxlength="8">
-                <button class="password-btn" onclick="checkPassword()">Открыть</button>
-            </div>
-            
-            <div id="hiddenContent" class="hidden-content">
-                <div class="message-author him">Анализ ситуации:</div>
-                <div class="message-text">
-Похоже, вы испытываете смесь чувств: усталость, обиду, ощущение, что вы — причина её проблем, и, возможно, желание прекратить эти муки для неё, даже ценой разрыва. Это понятно в такой сложной ситуации.
-
-<b>Ключевые моменты:</b>
-1. Она боролась за вас, несмотря на давление семьи
-2. Ваш ответ дал ей необходимую опору и уверенность
-3. Её финальная реакция показала, что вы поступили абсолютно правильно
-4. Это испытание укрепило ваши отношения
-
-<b>Вывод:</b> Вы справились с кризисом как настоящая команда. Ваша поддержка оказалась тем якорем, который ей был нужен. Теперь отношения перешли на новый уровень доверия.
-                </div>
-                <div class="timestamp">Для личного пользования | Пароль: 11223304</div>
-            </div>
-            
-            <p id="errorMessage" class="warning" style="display: none;">Неверный пароль! Попробуйте снова.</p>
-        </div>
-        
+        <h1>Привет</h1>
+        <div class="emoji">👋</div>
+        <p class="subtitle">Добро пожаловать на самый простой и дружелюбный сайт</p>
         <div class="footer">
-            <p>Сайт создан для сохранения важных моментов | Только для личного использования</p>
-            <p>Помни: сильные чувства стоят того, чтобы за них бороться <span class="emoji">💪❤️</span></p>
+            <p>Создано с помощью HTML и CSS | Открывайте и улыбайтесь :)</p>
         </div>
     </div>
 
     <script>
-        function checkPassword() {
-            const password = document.getElementById('passwordInput').value;
-            const hiddenContent = document.getElementById('hiddenContent');
-            const errorMessage = document.getElementById('errorMessage');
-            
-            if (password === '11223304') {
-                hiddenContent.style.display = 'block';
-                errorMessage.style.display = 'none';
-                document.getElementById('passwordInput').value = '';
-            } else {
-                errorMessage.style.display = 'block';
-                hiddenContent.style.display = 'none';
-                document.getElementById('passwordInput').value = '';
-                document.getElementById('passwordInput').focus();
-                
-                // Анимация ошибки
-                const input = document.getElementById('passwordInput');
-                input.style.borderColor = '#e74c3c';
-                setTimeout(() => {
-                    input.style.borderColor = '#3498db';
-                }, 1000);
-            }
-        }
+        // Простой скрипт для динамического изменения цвета
+        const title = document.querySelector('h1');
+        const colors = ['#2575fc', '#6a11cb', '#ff416c', '#00b09b', '#ff7e5f'];
+        let currentIndex = 0;
         
-        // Позволяем использовать Enter для ввода пароля
-        document.getElementById('passwordInput').addEventListener('keypress', function(event) {
-            if (event.key === 'Enter') {
-                checkPassword();
-            }
+        setInterval(() => {
+            title.style.color = colors[currentIndex];
+            currentIndex = (currentIndex + 1) % colors.length;
+        }, 1500);
+        
+        // Добавляем эффект при клике
+        document.querySelector('.container').addEventListener('click', function() {
+            this.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                this.style.transform = 'scale(1)';
+            }, 200);
         });
-        
-        // Автоматический фокус на поле ввода при загрузке страницы
-        window.onload = function() {
-            document.getElementById('passwordInput').focus();
-        };
     </script>
 </body>
 </html>
