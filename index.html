@@ -3,277 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Любимой Лизе от Миши ❤️‍🔥</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Любимой Лизе</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
         }
         
         body {
-            background: linear-gradient(135deg, #ffd6e7, #ffb3d9, #ff80b3);
+            background: linear-gradient(to bottom, #ffe6f2, #ffccff);
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 20px;
-            color: #5a003a;
+            font-family: 'Arial', sans-serif;
         }
         
         .container {
-            max-width: 800px;
-            width: 100%;
-            background-color: rgba(255, 255, 255, 0.9);
-            border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(180, 0, 100, 0.3);
-            overflow: hidden;
-            position: relative;
-        }
-        
-        .header {
-            background: linear-gradient(to right, #ff3385, #ff80b3);
-            padding: 30px;
             text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .hearts {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-        }
-        
-        .heart {
-            position: absolute;
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 24px;
-            animation: float 6s infinite linear;
-        }
-        
-        @keyframes float {
-            0% {
-                transform: translateY(100px) rotate(0deg);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-100px) rotate(360deg);
-                opacity: 0;
-            }
+            padding: 30px;
+            max-width: 800px;
         }
         
         .title {
-            color: white;
-            font-size: 2.5rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-            margin-bottom: 10px;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .subtitle {
-            color: white;
-            font-size: 1.5rem;
-            font-weight: 300;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .letter-container {
-            padding: 40px;
-            line-height: 1.8;
-            position: relative;
-        }
-        
-        .letter {
-            background: url('https://img.freepik.com/free-vector/white-elegant-texture-background_23-2148444597.jpg?w=1380&t=st=1692211301~exp=1692211901~hmac=96e87b74607dd4306281436c1a16203929e2dd9877410a4d5f78f31d6b6397fd');
-            background-size: cover;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            border-left: 8px solid #ff3385;
-            font-size: 1.2rem;
-        }
-        
-        .salutation {
-            font-size: 1.5rem;
-            margin-bottom: 20px;
+            font-size: 5rem;
             color: #ff3385;
-            font-weight: bold;
+            margin-bottom: 50px;
+            text-shadow: 3px 3px 0px rgba(255, 51, 133, 0.3);
         }
         
         .message {
-            margin-bottom: 25px;
-            text-align: justify;
+            font-size: 2.5rem;
+            color: #5a003a;
+            margin-bottom: 60px;
+            line-height: 1.4;
+            font-style: italic;
         }
         
         .signature {
-            text-align: right;
-            font-size: 1.8rem;
-            color: #ff3385;
-            margin-top: 30px;
-            font-weight: bold;
-        }
-        
-        .date {
-            text-align: right;
-            font-style: italic;
-            color: #666;
-            margin-top: 10px;
-        }
-        
-        .footer {
-            text-align: center;
-            padding: 20px;
-            background-color: #ffe6f2;
-            color: #b3005e;
-            font-size: 1.1rem;
-            border-top: 2px dashed #ff80b3;
-        }
-        
-        .hearts-footer {
-            margin-top: 10px;
             font-size: 1.5rem;
-            letter-spacing: 10px;
             color: #ff3385;
+            margin-top: 50px;
+            font-weight: bold;
         }
         
         @media (max-width: 768px) {
             .title {
+                font-size: 3.5rem;
+            }
+            
+            .message {
                 font-size: 2rem;
-            }
-            
-            .subtitle {
-                font-size: 1.2rem;
-            }
-            
-            .letter-container {
-                padding: 20px;
-            }
-            
-            .letter {
-                padding: 25px;
             }
         }
         
         @media (max-width: 480px) {
             .title {
-                font-size: 1.7rem;
+                font-size: 2.5rem;
             }
             
-            .letter {
-                font-size: 1.1rem;
-                padding: 20px;
+            .message {
+                font-size: 1.5rem;
             }
             
-            .header {
-                padding: 20px;
+            .signature {
+                font-size: 1.2rem;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="header">
-            <div class="hearts" id="hearts-container"></div>
-            <h1 class="title">Любимой Лизе ❤️‍🔥</h1>
-            <p class="subtitle">От Миши с бесконечной любовью</p>
+        <h1 class="title">Любимой Лизе</h1>
+        
+        <div class="message">
+            Каждый день, просыпаясь, я думаю о тебе и засыпаю с мыслями о тебе.
         </div>
         
-        <div class="letter-container">
-            <div class="letter">
-                <div class="salutation">Моя дорогая Лиза,</div>
-                
-                <div class="message">
-                    <p>Я хочу сказать тебе самые важные слова, которые идут от самого сердца. Каждый день, просыпаясь, я думаю о тебе и засыпаю с мыслями о тебе. Ты — самое прекрасное, что случилось в моей жизни.</p>
-                    
-                    <p>Твоя улыбка освещает мои самые тёмные дни, твой смех — самая прекрасная музыка для моих ушей, а твои глаза — это бездонные океаны, в которых я готов потеряться навсегда.</p>
-                    
-                    <p>С тобой я понял, что такое настоящая любовь. Это чувство, которое наполняет каждый уголок моего сердца теплом и светом. Это желание быть рядом в любой момент, поддерживать тебя, обнимать и целовать, когда ты этого хочешь или даже когда не осознаёшь этого.</p>
-                    
-                    <p>Я обещаю всегда быть рядом, в радости и печали, в лёгкие и трудные времена. Я обещаю беречь нашу любовь как самый драгоценный дар и делать всё, чтобы ты чувствовала себя самой любимой и счастливой.</p>
-                </div>
-                
-                <div class="signature">С бесконечной любовью, твой Миша ❤️‍🔥</div>
-                <div class="date">Сегодня и всегда</div>
-            </div>
-        </div>
-        
-        <div class="footer">
-            <p>Лиза, ты — моё солнце, моя луна и все мои звёзды</p>
-            <div class="hearts-footer">❤️‍🔥 ❤️‍🔥 ❤️‍🔥</div>
-        </div>
+        <div class="signature">Лиза❤️Миша</div>
     </div>
-
-    <script>
-        // Создаем плавающие сердечки
-        function createHearts() {
-            const heartsContainer = document.getElementById('hearts-container');
-            const heartCount = 25;
-            
-            for (let i = 0; i < heartCount; i++) {
-                const heart = document.createElement('div');
-                heart.classList.add('heart');
-                heart.innerHTML = '❤️';
-                
-                // Случайная позиция
-                const left = Math.random() * 100;
-                const size = Math.random() * 20 + 15;
-                const delay = Math.random() * 5;
-                const duration = Math.random() * 3 + 4;
-                
-                heart.style.left = `${left}%`;
-                heart.style.fontSize = `${size}px`;
-                heart.style.animationDelay = `${delay}s`;
-                heart.style.animationDuration = `${duration}s`;
-                
-                heartsContainer.appendChild(heart);
-            }
-        }
-        
-        // Добавляем интерактивность - меняем цвет заголовка при клике
-        document.addEventListener('DOMContentLoaded', function() {
-            createHearts();
-            
-            const title = document.querySelector('.title');
-            const originalColor = title.style.color;
-            
-            title.addEventListener('click', function() {
-                const colors = ['#ff3385', '#ff80b3', '#ffd6e7', '#ffffff'];
-                const randomColor = colors[Math.floor(Math.random() * colors.length)];
-                title.style.color = randomColor;
-                
-                // Возвращаем оригинальный цвет через 1 секунду
-                setTimeout(() => {
-                    title.style.color = originalColor;
-                }, 1000);
-            });
-            
-            // Добавляем эффект при наведении на письмо
-            const letter = document.querySelector('.letter');
-            letter.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-5px)';
-                this.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.15)';
-                this.style.transition = 'all 0.3s ease';
-            });
-            
-            letter.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0)';
-                this.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.1)';
-            });
-        });
-    </script>
 </body>
 </html>
