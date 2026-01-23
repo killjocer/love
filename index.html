@@ -12,68 +12,286 @@
         }
         
         body {
-            background: linear-gradient(to bottom, #ffe6f2, #ffccff);
+            background: linear-gradient(135deg, #ff3385 0%, #ff80b3 25%, #ffb3d9 50%, #ffccff 75%, #ffe6ff 100%);
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-family: 'Arial', sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        /* Анимированный фон */
+        .floating-hearts {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .heart {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 24px;
+            opacity: 0;
+            animation: float 15s infinite linear;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
         }
         
         .container {
             text-align: center;
-            padding: 30px;
-            max-width: 800px;
+            padding: 40px;
+            max-width: 900px;
+            z-index: 10;
+            position: relative;
+            background-color: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            box-shadow: 
+                0 15px 35px rgba(0, 0, 0, 0.2),
+                inset 0 0 50px rgba(255, 255, 255, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            animation: pulse 5s infinite alternate;
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 
+                    0 15px 35px rgba(0, 0, 0, 0.2),
+                    inset 0 0 50px rgba(255, 255, 255, 0.3);
+            }
+            100% {
+                box-shadow: 
+                    0 20px 45px rgba(255, 51, 133, 0.4),
+                    inset 0 0 60px rgba(255, 255, 255, 0.5);
+            }
         }
         
         .title {
-            font-size: 5rem;
-            color: #ff3385;
-            margin-bottom: 50px;
-            text-shadow: 3px 3px 0px rgba(255, 51, 133, 0.3);
+            font-size: 6rem;
+            color: white;
+            margin-bottom: 60px;
+            text-shadow: 
+                3px 3px 0px rgba(255, 51, 133, 0.5),
+                6px 6px 10px rgba(0, 0, 0, 0.2);
+            animation: titleGlow 3s infinite alternate, titleFloat 4s ease-in-out infinite;
+            font-weight: 800;
+            letter-spacing: 2px;
+        }
+        
+        @keyframes titleGlow {
+            0% {
+                text-shadow: 
+                    3px 3px 0px rgba(255, 51, 133, 0.5),
+                    6px 6px 10px rgba(0, 0, 0, 0.2);
+            }
+            100% {
+                text-shadow: 
+                    3px 3px 0px rgba(255, 51, 133, 0.8),
+                    6px 6px 20px rgba(255, 51, 133, 0.4),
+                    0 0 30px rgba(255, 255, 255, 0.6);
+            }
+        }
+        
+        @keyframes titleFloat {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
         }
         
         .message {
-            font-size: 2.5rem;
-            color: #5a003a;
-            margin-bottom: 60px;
+            font-size: 3rem;
+            color: white;
+            margin-bottom: 80px;
             line-height: 1.4;
             font-style: italic;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+            animation: textReveal 2s ease-out, messageShine 5s infinite alternate;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        @keyframes textReveal {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes messageShine {
+            0% {
+                background: rgba(255, 255, 255, 0.1);
+                border-color: rgba(255, 255, 255, 0.2);
+            }
+            100% {
+                background: rgba(255, 255, 255, 0.2);
+                border-color: rgba(255, 255, 255, 0.4);
+            }
         }
         
         .signature {
-            font-size: 1.5rem;
-            color: #ff3385;
-            margin-top: 50px;
+            font-size: 2.2rem;
+            color: #ffebf7;
+            margin-top: 40px;
             font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            animation: heartbeat 1.5s infinite, signatureColor 6s infinite alternate;
+            display: inline-block;
+            padding: 15px 30px;
+            border-radius: 50px;
+            background: rgba(255, 51, 133, 0.3);
+            backdrop-filter: blur(5px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+        
+        @keyframes signatureColor {
+            0% {
+                color: #ffebf7;
+                background: rgba(255, 51, 133, 0.3);
+                border-color: rgba(255, 255, 255, 0.3);
+            }
+            50% {
+                color: #ffffff;
+                background: rgba(255, 128, 179, 0.4);
+                border-color: rgba(255, 255, 255, 0.5);
+            }
+            100% {
+                color: #ffe6f2;
+                background: rgba(255, 0, 128, 0.3);
+                border-color: rgba(255, 255, 255, 0.4);
+            }
+        }
+        
+        /* Эффект частиц */
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 50%;
+            animation: particleFloat 20s infinite linear;
+        }
+        
+        @keyframes particleFloat {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.8;
+            }
+            90% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-100px) rotate(720deg);
+                opacity: 0;
+            }
+        }
+        
+        /* Медиа-запросы для адаптивности */
+        @media (max-width: 1024px) {
+            .title {
+                font-size: 5rem;
+            }
+            
+            .message {
+                font-size: 2.5rem;
+            }
+            
+            .signature {
+                font-size: 1.8rem;
+            }
         }
         
         @media (max-width: 768px) {
             .title {
-                font-size: 3.5rem;
+                font-size: 3.8rem;
             }
             
             .message {
                 font-size: 2rem;
             }
+            
+            .signature {
+                font-size: 1.5rem;
+            }
+            
+            .container {
+                padding: 30px 20px;
+                margin: 20px;
+            }
         }
         
         @media (max-width: 480px) {
             .title {
-                font-size: 2.5rem;
+                font-size: 2.8rem;
             }
             
             .message {
-                font-size: 1.5rem;
+                font-size: 1.6rem;
+                padding: 15px;
             }
             
             .signature {
-                font-size: 1.2rem;
+                font-size: 1.3rem;
+                padding: 12px 25px;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Анимированные сердечки на фоне -->
+    <div class="floating-hearts" id="floatingHearts"></div>
+    
+    <!-- Частицы -->
+    <div class="particles" id="particles"></div>
+    
     <div class="container">
         <h1 class="title">Любимой Лизе</h1>
         
@@ -83,5 +301,174 @@
         
         <div class="signature">Лиза❤️Миша</div>
     </div>
+
+    <script>
+        // Создание плавающих сердечек
+        function createFloatingHearts() {
+            const heartsContainer = document.getElementById('floatingHearts');
+            const heartCount = 30;
+            
+            for (let i = 0; i < heartCount; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.innerHTML = '❤️';
+                
+                // Случайные параметры
+                const left = Math.random() * 100;
+                const size = Math.random() * 25 + 15;
+                const delay = Math.random() * 15;
+                const duration = Math.random() * 10 + 15;
+                
+                heart.style.left = `${left}%`;
+                heart.style.fontSize = `${size}px`;
+                heart.style.animationDelay = `${delay}s`;
+                heart.style.animationDuration = `${duration}s`;
+                
+                heartsContainer.appendChild(heart);
+            }
+        }
+        
+        // Создание частиц
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 100;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Случайные параметры
+                const left = Math.random() * 100;
+                const size = Math.random() * 3 + 1;
+                const delay = Math.random() * 20;
+                const duration = Math.random() * 15 + 20;
+                const colorOpacity = Math.random() * 0.5 + 0.3;
+                
+                particle.style.left = `${left}%`;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.animationDelay = `${delay}s`;
+                particle.style.animationDuration = `${duration}s`;
+                particle.style.backgroundColor = `rgba(255, 255, 255, ${colorOpacity})`;
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+        
+        // Эффект при наведении на заголовок
+        function setupTitleHoverEffect() {
+            const title = document.querySelector('.title');
+            
+            title.addEventListener('mouseenter', function() {
+                this.style.animation = 'titleGlow 1s infinite alternate, titleFloat 2s ease-in-out infinite';
+                this.style.transform = 'scale(1.05)';
+            });
+            
+            title.addEventListener('mouseleave', function() {
+                this.style.animation = 'titleGlow 3s infinite alternate, titleFloat 4s ease-in-out infinite';
+                this.style.transform = 'scale(1)';
+            });
+        }
+        
+        // Эффект при наведении на сообщение
+        function setupMessageHoverEffect() {
+            const message = document.querySelector('.message');
+            
+            message.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.02)';
+                this.style.transition = 'transform 0.3s ease';
+            });
+            
+            message.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1)';
+            });
+        }
+        
+        // Эффект при клике на подпись
+        function setupSignatureClickEffect() {
+            const signature = document.querySelector('.signature');
+            
+            signature.addEventListener('click', function() {
+                // Временное увеличение
+                this.style.transform = 'scale(1.2)';
+                this.style.transition = 'transform 0.3s ease';
+                
+                // Создаем всплеск сердечек
+                createHeartExplosion();
+                
+                // Возвращаем к нормальному размеру
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                }, 300);
+            });
+        }
+        
+        // Создание всплеска сердечек при клике
+        function createHeartExplosion() {
+            const container = document.querySelector('.container');
+            
+            for (let i = 0; i < 15; i++) {
+                const heart = document.createElement('div');
+                heart.innerHTML = '❤️';
+                heart.style.position = 'absolute';
+                heart.style.fontSize = '20px';
+                heart.style.color = '#ff3385';
+                heart.style.zIndex = '100';
+                heart.style.left = '50%';
+                heart.style.top = '85%';
+                heart.style.opacity = '1';
+                heart.style.transform = 'translate(-50%, -50%)';
+                heart.style.pointerEvents = 'none';
+                
+                container.appendChild(heart);
+                
+                // Анимация взрыва
+                const angle = Math.random() * Math.PI * 2;
+                const velocity = 2 + Math.random() * 2;
+                const vx = Math.cos(angle) * velocity;
+                const vy = Math.sin(angle) * velocity;
+                
+                let x = 0;
+                let y = 0;
+                let opacity = 1;
+                
+                const explodeInterval = setInterval(() => {
+                    x += vx;
+                    y += vy;
+                    vy += 0.1; // гравитация
+                    opacity -= 0.03;
+                    
+                    heart.style.left = `calc(50% + ${x * 20}px)`;
+                    heart.style.top = `calc(85% + ${y * 20}px)`;
+                    heart.style.opacity = opacity;
+                    
+                    if (opacity <= 0) {
+                        clearInterval(explodeInterval);
+                        heart.remove();
+                    }
+                }, 30);
+            }
+        }
+        
+        // Инициализация всех эффектов
+        document.addEventListener('DOMContentLoaded', function() {
+            createFloatingHearts();
+            createParticles();
+            setupTitleHoverEffect();
+            setupMessageHoverEffect();
+            setupSignatureClickEffect();
+            
+            // Плавное появление контейнера
+            const container = document.querySelector('.container');
+            container.style.opacity = '0';
+            container.style.transform = 'translateY(30px)';
+            container.style.transition = 'opacity 1.5s ease, transform 1.5s ease';
+            
+            setTimeout(() => {
+                container.style.opacity = '1';
+                container.style.transform = 'translateY(0)';
+            }, 300);
+        });
+    </script>
 </body>
 </html>
